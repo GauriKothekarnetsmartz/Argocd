@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-loadbalancer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-loadbalancer
+  template:
+    metadata:
+      labels:
+        app: nginx-loadbalancer
+    spec:
+      containers:
+      - name: nginx-loadbalancer
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nginx-conf
+          mountPath: /etc/nginx/conf.d
+          subPath: default.conf
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: nginx-loadbalancer-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-loadbalancer-service
+spec:
+  selector:
+    app: nginx-loadbalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+

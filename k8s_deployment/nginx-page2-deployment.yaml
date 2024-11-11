@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-page2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-page2
+  template:
+    metadata:
+      labels:
+        app: nginx-page2
+    spec:
+      containers:
+      - name: nginx-page2
+        image: nginx:latest
+        volumeMounts:
+        - name: html-volume
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html-volume
+        configMap:
+          name: nginx-page2-html
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-page2-service
+spec:
+  selector:
+    app: nginx-page2
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+

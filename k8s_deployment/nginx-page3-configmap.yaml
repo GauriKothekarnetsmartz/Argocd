@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-page3-html
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Page 3 - Welcome to NGINX!</title>
+    </head>
+    <body>
+      <h1>Welcome to Page 3 - Hello from NGINX!</h1>
+    </body>
+    </html>
+
