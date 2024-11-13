@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3  # Three NGINX containers will be created
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: gaurinetsmartz1504/nginx-loadbalancer:latest  # Replace with your custom image
+        ports:
+        - containerPort: 80
+

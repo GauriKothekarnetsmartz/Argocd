@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: NodePort  # Change to NodePort for KIND local access
+  selector:
+    app: nginx  # This will match the pods created by the Deployment
+  ports:
+    - protocol: TCP
+      port: 80            # Port on the service
+      targetPort: 80       # Port on the NGINX containers
+      nodePort: 30007      # Set a fixed NodePort (between 30000-32767 for KIND)
+
