@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: app1
-        image: gaurinetsmartz1504/gauri3-nginx:latest
+        image: gaurinetsmartz1504/gauri1-nginx:latest
         ports:
         - containerPort: 80
 ---
