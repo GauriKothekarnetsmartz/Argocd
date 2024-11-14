@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
       - name: app2
-        image: gaurinetsmartz1504/nginx-loadbalancer:latest
+        image: nginx:alpine
         imagePullPolicy: Always
         ports:
         - containerPort: 80
